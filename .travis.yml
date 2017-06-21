@@ -1,8 +1,8 @@
 language: c
 
 compiler:
-  - gcc
   - clang
+  - gcc
 
 os:
   - linux
@@ -19,3 +19,36 @@ script:
   - ./autogen.sh
   - ./configure $CONFIG
   - make distcheck
+
+matrix:
+  exclude:
+    - compiler: gcc
+      os: osx
+
+before_install:
+  - git clone https://github.com/berkus/travis-scripts.git travis-ci
+  - ./travis-ci/travis_install_packages.sh
+
+install:
+  - mkdir -p _build_
+  - cd _build_
+  - cmake -GUnix\ Makefiles -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX ..
+  - make -j4
+  - cd ..
+
+script:
+  - cd _build_/tests
+  - ctest -V
+  - cd ../..
+
+branches:
+  only:
+    - master
+
+notifications:
+  recipients:
+    - berkus@metta.systems
+  email:
+    on_success: change
+    on_failure: always
+
