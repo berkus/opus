@@ -61,7 +61,7 @@ opus_val16 op_pvq_search_c(celt_norm *X, int *iy, int K, int N, int arch);
  * @param N Number of samples to encode
  * @param K Number of pulses to use
  * @param enc Entropy encoder state
- * @ret A mask indicating which blocks in the band received pulses
+ * @return A mask indicating which blocks in the band received pulses
 */
 unsigned alg_quant(celt_norm *X, int N, int K, int spread, int B, ec_enc *enc,
       opus_val16 gain, int resynth, int arch);
@@ -71,7 +71,7 @@ unsigned alg_quant(celt_norm *X, int N, int K, int spread, int B, ec_enc *enc,
  * @param N Number of samples to decode
  * @param K Number of pulses to use
  * @param dec Entropy decoder state
- * @ret A mask indicating which blocks in the band received pulses
+ * @return A mask indicating which blocks in the band received pulses
  */
 unsigned alg_unquant(celt_norm *X, int N, int K, int spread, int B,
       ec_dec *dec, opus_val16 gain);

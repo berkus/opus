@@ -97,11 +97,13 @@ void haar1(celt_norm *X, int N0, int stride);
  * @param tf_res Time-frequency resolution change
  * @param total_bits Total number of bits that can be used for the frame (including the ones already spent)
  * @param balance Number of unallocated bits
- * @param en Entropy coder state
- * @param LM log2() of the number of 2.5 subframes in the frame
+ * @param ec Entropy encoder
+ * @param M log2() of the number of 2.5 subframes in the frame
  * @param codedBands Last band to receive bits + 1
  * @param seed Random generator seed
+ * @param complexity <>
  * @param arch Run-time architecture (see opus_select_arch())
+ * @param disable_inv <>
  */
 void quant_all_bands(int encode, const CELTMode *m, int start, int end,
       celt_norm * X, celt_norm * Y, unsigned char *collapse_masks,
